@@ -31,6 +31,11 @@ public class libraryController {
         return "Add book";
     }
 
+    @GetMapping("/view")
+    public String ViewBooks(){
+        return "View books";
+    }
+
     @PostMapping("/search")
     public String SearchBook(){
         return "Search book";
