@@ -25,4 +25,9 @@ public class libraryController {
     public String UserLogin(){
         return "User Login";
     }
+
+    @PostMapping("/add")
+    public String AddBook(){
+        return "Add book";
+    }
 }
