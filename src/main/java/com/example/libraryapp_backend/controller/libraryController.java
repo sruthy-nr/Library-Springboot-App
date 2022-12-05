@@ -40,4 +40,9 @@ public class libraryController {
     public String EditBook(){
         return "Edit book";
     }
+
+    @PostMapping("/delete")
+    public String DeleteBook(){
+        return "Delete book";
+    }
 }
