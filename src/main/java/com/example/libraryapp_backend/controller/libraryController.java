@@ -30,4 +30,9 @@ public class libraryController {
     public String AddBook(){
         return "Add book";
     }
+
+    @PostMapping("/search")
+    public String SearchBook(){
+        return "Search book";
+    }
 }
