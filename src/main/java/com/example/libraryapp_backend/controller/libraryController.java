@@ -15,4 +15,9 @@ public class libraryController {
     public String Admin(){
         return "Admin Login";
     }
+
+    @PostMapping("/userreg")
+    public String UserReg(){
+        return "User Registration";
+    }
 }
