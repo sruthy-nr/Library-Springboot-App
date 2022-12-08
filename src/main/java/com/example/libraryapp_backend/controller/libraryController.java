@@ -1,51 +1,66 @@
 package com.example.libraryapp_backend.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.libraryapp_backend.dao.UserDao;
+import com.example.libraryapp_backend.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class libraryController {
+
+    @Autowired
+    private UserDao udao;
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String Homepage(){
     return "Welcome to my website";
     }
 
-    @PostMapping("/adminlogin")
-    public String Admin(){
-        return "Admin Login";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/userreg", consumes = "application/json", produces = "application/json")
+    public Map<String,String> UserReg(@RequestBody User u){
+        udao.save(u);
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
-    @PostMapping("/userreg")
-    public String UserReg(){
-        return "User Registration";
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/userlogin", consumes = "application/json", produces = "application/json")
+    public List<User> UserLogin(@RequestBody User u){
+        return (List<User>) udao.userLogin(u.getUsername(),u.getPassword());
     }
 
-    @PostMapping("/userlogin")
-    public String UserLogin(){
-        return "User Login";
-    }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/add")
     public String AddBook(){
         return "Add book";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
     public String ViewBooks(){
         return "View books";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/search")
     public String SearchBook(){
         return "Search book";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/edit")
     public String EditBook(){
         return "Edit book";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/delete")
     public String DeleteBook(){
         return "Delete book";
