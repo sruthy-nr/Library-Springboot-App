@@ -17,6 +17,7 @@ public class libraryController {
     @Autowired
     private UserDao udao;
 
+
     @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String Homepage(){
@@ -38,10 +39,12 @@ public class libraryController {
         return (List<User>) udao.userLogin(u.getUsername(),u.getPassword());
     }
 
+
     @Autowired
     private LibraryDao ldao;
+
     @CrossOrigin(origins = "*")
-    @PostMapping("/add")
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
     public Map<String,String> AddBook(@RequestBody Library l){
         ldao.save(l);
         HashMap<String,String> map=new HashMap<>();
@@ -51,14 +54,14 @@ public class libraryController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/view")
-    public String ViewBooks(){
-        return "View books";
+    public List<Library> ViewBooks(){
+        return (List<Library>) ldao.findAll();
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/search")
-    public String SearchBook(){
-        return "Search book";
+    @PostMapping(path = "/search", consumes = "application/json", produces = "application/json")
+    public List<Library> SearchBook(@RequestBody Library l){
+        return (List<Library>) ldao.searchBook(l.getTitle());
     }
 
     @CrossOrigin(origins = "*")
@@ -68,8 +71,11 @@ public class libraryController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/delete")
-    public String DeleteBook(){
-        return "Delete book";
+    @PostMapping(path = "/delete", consumes = "application/json", produces = "application/json")
+    public Map<String, String> DeleteBook(@RequestBody Library l){
+        ldao.deleteBook(l.getId());
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 }

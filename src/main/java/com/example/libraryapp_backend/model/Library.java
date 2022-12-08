@@ -14,26 +14,26 @@ public class Library {
     private int id;
     private String title;
     private String author;
-    private String desc;
+    private String descr;
     private String publish;
     private String lang;
     private String dist;
-    private String release;
+    private String released;
     private int price;
     private String img;
 
     public Library() {
     }
 
-    public Library(int id, String title, String author, String desc, String publish, String lang, String dist, String release, int price, String img) {
+    public Library(int id, String title, String author, String descr, String publish, String lang, String dist, String released, int price, String img) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.desc = desc;
+        this.descr = descr;
         this.publish = publish;
         this.lang = lang;
         this.dist = dist;
-        this.release = release;
+        this.released = released;
         this.price = price;
         this.img = img;
     }
@@ -62,12 +62,12 @@ public class Library {
         this.author = author;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescr() {
+        return descr;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     public String getPublish() {
@@ -94,12 +94,12 @@ public class Library {
         this.dist = dist;
     }
 
-    public String getRelease() {
-        return release;
+    public String getReleased() {
+        return released;
     }
 
-    public void setRelease(String release) {
-        this.release = release;
+    public void setReleased(String released) {
+        this.released = released;
     }
 
     public int getPrice() {
