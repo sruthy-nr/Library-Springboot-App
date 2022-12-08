@@ -1,6 +1,8 @@
 package com.example.libraryapp_backend.controller;
 
+import com.example.libraryapp_backend.dao.LibraryDao;
 import com.example.libraryapp_backend.dao.UserDao;
+import com.example.libraryapp_backend.model.Library;
 import com.example.libraryapp_backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +38,15 @@ public class libraryController {
         return (List<User>) udao.userLogin(u.getUsername(),u.getPassword());
     }
 
+    @Autowired
+    private LibraryDao ldao;
     @CrossOrigin(origins = "*")
     @PostMapping("/add")
-    public String AddBook(){
-        return "Add book";
+    public Map<String,String> AddBook(@RequestBody Library l){
+        ldao.save(l);
+        HashMap<String,String> map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
     @CrossOrigin(origins = "*")
